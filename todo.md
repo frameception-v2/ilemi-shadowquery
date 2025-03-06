@@ -22,7 +22,7 @@
 - [x] Set up frame post handler with initial state generation (Entry)  
 *User outcome: First interaction creates encrypted session cookie*
 
-- [ ] Configure CSS clamp() for dynamic font scaling across devices (Entry)  
+- [x] Configure CSS clamp() for dynamic font scaling across devices (Entry)  
 *User outcome: Text remains legible on small screens*
 
 - [ ] Add text input overlay positioned with viewport-aware coordinates (Input)  

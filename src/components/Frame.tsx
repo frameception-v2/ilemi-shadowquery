@@ -184,7 +184,7 @@ export default function Frame() {
               fill="url(#brandGradient)"
               style={{
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: 'clamp(32px, 5vw, 64px)',
+                fontSize: 'clamp(40px, 4vw, 56px)', // Optimized for mobile legibility
                 fontWeight: 600,
                 letterSpacing: '-0.03em',
                 visibility: textMetrics ? 'visible' : 'hidden'
