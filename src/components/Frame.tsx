@@ -5,7 +5,7 @@ import sdk, {
   AddFrame,
   SignIn as SignInCore,
 } from "@farcaster/frame-sdk";
-import type { FrameContext, SessionDataV1 } from "~/lib/frame-types";
+import type { FrameContext, SessionDataV1, FrameState } from "~/lib/frame-types";
 import {
   Card,
   CardHeader,
