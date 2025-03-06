@@ -153,7 +153,12 @@ export default function Frame() {
           style={{ backgroundColor: '#ffffff' }}
         >
           {/* Base canvas - will be used for all frame content */}
-          <rect width="100%" height="100%" fill="transparent" />
+          {/* Responsive background gradient */}
+          <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#4f46e5' }} />
+            <stop offset="100%" style={{ stopColor: '#ec4899' }} />
+          </linearGradient>
+          <rect width="100%" height="100%" fill="url(#backgroundGradient)" />
           <g id="canvas-content">
             {/* Brand gradient for text */}
             <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">

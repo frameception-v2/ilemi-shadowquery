@@ -10,7 +10,7 @@
 - [x] Define FrameState interface with versioned session data types (Base)  
 *User outcome: Type-safe state available for all frame handlers*
 
-- [ ] Build gradient background layer using linearGradient SVG element with viewport units (Entry)  
+- [x] Build gradient background layer using linearGradient SVG element with viewport units (Entry)  
 *User outcome: Entry frame shows responsive color transition background*
 
 - [ ] Implement text centering logic using textMetrics API for SVG (Entry)  
