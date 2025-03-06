@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PROJECT_ID, PROJECT_TITLE } from '~/lib/constants'
 import { type FrameState } from '~/lib/frame-types'
-import { sealData } from '@hapi/iron'
+import { sealData } from 'iron-seal'
 
-const ENCRYPTION_KEY = process.env.FRAME_ENCRYPTION_KEY || process.env.SESSION_SECRET || ''
+const ENCRYPTION_KEY = process.env.IRON_SECRET || ''
 
 export const dynamic = "force-dynamic";
 
@@ -23,14 +23,9 @@ export async function POST(req: NextRequest) {
   }
 
   // Encrypt and seal the session data
-  const sealed = await sealData(initialState, ENCRYPTION_KEY, {
-    ttl: 15 * 60 * 1000, // 15 minutes in milliseconds
-    encryptionOptions: {
-      algorithm: 'aes-256-cbc',
-      keySalt: 'frame-session',
-      ivBits: 128,
-      minPasswordlength: 32
-    }
+  const sealed = await sealData(initialState, {
+    password: ENCRYPTION_KEY,
+    ttl: 15 * 60 // 15 minutes in seconds
   })
 
   // Generate response with session cookie
