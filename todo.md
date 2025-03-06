@@ -1,4 +1,4 @@
-- [ ] Initialize /api/frame route with Next.js 14 template including Farcaster meta tags and viewport config (Base)  
+- [x] Initialize /api/frame route with Next.js 14 template including Farcaster meta tags and viewport config (Base)  
 *User outcome: Basic frame endpoint responds with valid HTML structure*
 
 - [ ] Create responsive SVG canvas container (1200x630) with proper XML namespaces (Base)  
