@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { PROJECT_TITLE } from '~/lib/constants'
 import { type FrameState } from '~/lib/frame-types'
 import { randomBytes } from 'crypto'
-import { Client } from '@sodium-plus/sodium-plus'
-import { sealData } from 'iron-session'
+import sodium from 'libsodium-wrappers'
+import { sealData } from 'next-iron-session'
 
 const ENCRYPTION_KEY = process.env.FRAME_ENCRYPTION_KEY || randomBytes(32).toString('hex')
 
@@ -21,10 +21,10 @@ export async function POST(req: NextRequest) {
   }
 
   // Encrypt and seal the session data
-  const sodium = await Client.ready()
+  await sodium.ready
   const sealed = await sealData(initialState, {
-    password: ENCRYPTION_KEY,
-    ttl: 300 // 5 minute session
+    ttl: 300, // 5 minute session
+    password: ENCRYPTION_KEY
   })
 
   // Generate response with session cookie
