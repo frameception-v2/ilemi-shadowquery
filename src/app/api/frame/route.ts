@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PROJECT_TITLE } from '~/lib/constants'
+import { PROJECT_ID, PROJECT_TITLE } from '~/lib/constants'
 import { type FrameState } from '~/lib/frame-types'
-import { randomBytes } from 'crypto'
-import sodium from 'libsodium-wrappers'
-import { sealData } from 'next-iron-session'
+import { sealData } from '@hapi/iron'
 
-const ENCRYPTION_KEY = process.env.FRAME_ENCRYPTION_KEY || randomBytes(32).toString('hex')
+const ENCRYPTION_KEY = process.env.FRAME_ENCRYPTION_KEY || process.env.SESSION_SECRET || ''
 
 export const dynamic = "force-dynamic";
 
@@ -15,16 +13,24 @@ export async function POST(req: NextRequest) {
     version: '1.0',
     createdAt: Date.now(),
     updatedAt: Date.now(),
-    sessionId: randomBytes(16).toString('hex'),
+    sessionId: crypto.randomUUID(),
     fid: req.headers.get('x-farcaster-fid') || '',
-    address: req.headers.get('x-farcaster-address') || ''
+    address: req.headers.get('x-farcaster-address') || '',
+    data: {
+      currentStep: 'entry',
+      previousSteps: []
+    }
   }
 
   // Encrypt and seal the session data
-  await sodium.ready
-  const sealed = await sealData(initialState, {
-    ttl: 300, // 5 minute session
-    password: ENCRYPTION_KEY
+  const sealed = await sealData(initialState, ENCRYPTION_KEY, {
+    ttl: 15 * 60 * 1000, // 15 minutes in milliseconds
+    encryptionOptions: {
+      algorithm: 'aes-256-cbc',
+      keySalt: 'frame-session',
+      ivBits: 128,
+      minPasswordlength: 32
+    }
   })
 
   // Generate response with session cookie
@@ -51,12 +57,13 @@ export async function POST(req: NextRequest) {
   )
 
   // Set encrypted cookie
-  response.cookies.set('frame-state', sealed, {
+  response.cookies.set(`${PROJECT_ID}_session`, sealed, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 300,
+    maxAge: 15 * 60, // 15 minutes
     sameSite: 'strict',
-    path: '/'
+    path: '/',
+    priority: 'high'
   })
 
   return response
