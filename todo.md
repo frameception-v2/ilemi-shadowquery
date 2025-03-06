@@ -7,7 +7,7 @@
 - [x] Implement dynamic title component with brand-approved typography in SVG (Base)  
 *User outcome: Branded headline appears centered in frame previews*
 
-- [ ] Define FrameState interface with versioned session data types (Base)  
+- [x] Define FrameState interface with versioned session data types (Base)  
 *User outcome: Type-safe state available for all frame handlers*
 
 - [ ] Build gradient background layer using linearGradient SVG element with viewport units (Entry)  

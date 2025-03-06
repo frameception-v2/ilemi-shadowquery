@@ -4,8 +4,8 @@ import { useEffect, useCallback, useState } from "react";
 import sdk, {
   AddFrame,
   SignIn as SignInCore,
-  type Context,
 } from "@farcaster/frame-sdk";
+import type { FrameContext, SessionDataV1 } from "~/lib/frame-types";
 import {
   Card,
   CardHeader,
@@ -40,7 +40,13 @@ function ExampleCard() {
 
 export default function Frame() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<Context.FrameContext>();
+  const [context, setContext] = useState<FrameContext>();
+  // TODO: Implement state persistence
+  const [frameState, setFrameState] = useState<FrameState>({
+    version: '1.0',
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  });
 
   const [added, setAdded] = useState(false);
 
