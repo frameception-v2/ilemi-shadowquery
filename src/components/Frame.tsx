@@ -196,7 +196,7 @@ export default function Frame() {
             {/* Primary CTA Button */}
             <g
               transform="translate(600 500)" // Centers horizontally, positions at bottom 1/3
-              onClick={() => sdk.actions.primary()}
+              onClick={() => sdk.actions.setPrimaryButton()}
               style={{ cursor: 'pointer' }}
             >
               <rect
