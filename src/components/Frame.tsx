@@ -149,7 +149,28 @@ export default function Frame() {
           {/* Base canvas - will be used for all frame content */}
           <rect width="100%" height="100%" fill="transparent" />
           <g id="canvas-content">
-            {/* Content will be dynamically added here */}
+            {/* Brand gradient for text */}
+            <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style={{ stopColor: '#c026d3' }} />
+              <stop offset="100%" style={{ stopColor: '#ef4444' }} />
+            </linearGradient>
+            
+            {/* Centered title text */}
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="url(#brandGradient)"
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: '64px',
+                fontWeight: 600,
+                letterSpacing: '-0.03em'
+              }}
+            >
+              {PROJECT_TITLE}
+            </text>
           </g>
         </svg>
       </div>

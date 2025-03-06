@@ -4,7 +4,7 @@
 - [x] Create responsive SVG canvas container (1200x630) with proper XML namespaces (Base)  
 *User outcome: Empty canvas renders correctly in frame clients*
 
-- [ ] Implement dynamic title component with brand-approved typography in SVG (Base)  
+- [x] Implement dynamic title component with brand-approved typography in SVG (Base)  
 *User outcome: Branded headline appears centered in frame previews*
 
 - [ ] Define FrameState interface with versioned session data types (Base)  
