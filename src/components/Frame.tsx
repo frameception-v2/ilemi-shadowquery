@@ -192,6 +192,36 @@ export default function Frame() {
             >
               {PROJECT_TITLE}
             </text>
+
+            {/* Primary CTA Button */}
+            <g
+              transform="translate(600 500)" // Centers horizontally, positions at bottom 1/3
+              onClick={() => sdk.actions.primary()}
+              style={{ cursor: 'pointer' }}
+            >
+              <rect
+                width="280" 
+                height="60"
+                x="-140" // Centers relative to transform point
+                rx="30"
+                fill="#FFFFFF"
+                className="transition-colors hover:fill-neutral-100"
+              />
+              <text
+                x="0"
+                y="18"
+                textAnchor="middle"
+                fill="url(#brandGradient)"
+                style={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.015em'
+                }}
+              >
+                Get Started
+              </text>
+            </g>
           </g>
         </svg>
       </div>

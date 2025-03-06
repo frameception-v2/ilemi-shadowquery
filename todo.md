@@ -16,7 +16,7 @@
 - [x] Implement text centering logic using textMetrics API for SVG (Entry)  
 *User outcome: Welcome message stays vertically/horizontally centered*
 
-- [ ] Create primary CTA button with 44x44px minimum touch target (Entry)  
+- [x] Create primary CTA button with 44x44px minimum touch target (Entry)  
 *User outcome: Mobile users can reliably tap initial action button*
 
 - [ ] Set up frame post handler with initial state generation (Entry)  
