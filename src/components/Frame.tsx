@@ -136,8 +136,22 @@ export default function Frame() {
         paddingRight: context?.client.safeAreaInsets?.right ?? 0,
       }}
     >
-      <div className="w-[300px] mx-auto py-2 px-2">
-        <ExampleCard />
+      <div className="w-full h-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 1200 630"
+          preserveAspectRatio="xMidYMid meet"
+          width="100%"
+          height="100%"
+          style={{ backgroundColor: '#ffffff' }}
+        >
+          {/* Base canvas - will be used for all frame content */}
+          <rect width="100%" height="100%" fill="transparent" />
+          <g id="canvas-content">
+            {/* Content will be dynamically added here */}
+          </g>
+        </svg>
       </div>
     </div>
   );
