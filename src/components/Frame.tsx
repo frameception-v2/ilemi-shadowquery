@@ -49,6 +49,7 @@ export default function Frame() {
   });
 
   const [added, setAdded] = useState(false);
+  const [textMetrics, setTextMetrics] = useState<{width: number; height: number}>();
 
   const [addFrameResult, setAddFrameResult] = useState("");
 
@@ -166,18 +167,27 @@ export default function Frame() {
               <stop offset="100%" style={{ stopColor: '#ef4444' }} />
             </linearGradient>
             
-            {/* Centered title text */}
+            {/* Dynamic text centering using textMetrics */}
             <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
+              ref={(node) => {
+                if (node) {
+                  const bbox = node.getBBox();
+                  setTextMetrics({
+                    width: bbox.width,
+                    height: bbox.height
+                  });
+                }
+              }}
+              x={textMetrics ? `${600 - textMetrics.width/2}` : "50%"}
+              y={textMetrics ? `${315 + textMetrics.height/2}` : "50%"}
+              textAnchor="start"
               fill="url(#brandGradient)"
               style={{
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: '64px',
+                fontSize: 'clamp(32px, 5vw, 64px)',
                 fontWeight: 600,
-                letterSpacing: '-0.03em'
+                letterSpacing: '-0.03em',
+                visibility: textMetrics ? 'visible' : 'hidden'
               }}
             >
               {PROJECT_TITLE}
